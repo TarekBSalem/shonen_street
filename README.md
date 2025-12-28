@@ -27,10 +27,10 @@ A modern e-commerce platform built with Laravel 10+, Vue 3, Inertia.js, and Tail
 
 ## Tech Stack
 
-- **Backend**: Laravel 10+
+- **Backend**: Laravel 12
 - **Frontend**: Vue 3 + Inertia.js
 - **Styling**: Tailwind CSS + Shadcn UI
-- **Database**: MySQL / PostgreSQL
+- **Database**: MySQL 
 - **Queue**: Database queue driver
 - **Email**: Laravel Mail with custom templates
 
@@ -38,7 +38,7 @@ A modern e-commerce platform built with Laravel 10+, Vue 3, Inertia.js, and Tail
 
 ### Prerequisites
 
-- PHP 8.1 or higher
+- PHP 8.2 or higher
 - Composer
 - Node.js 18+ and npm
 - MySQL or PostgreSQL
@@ -340,31 +340,7 @@ herd restart
 valet restart
 ```
 
-## Testing
 
-### Manual Testing Checklist
-
-**Admin:**
-
-- [ ] Login as admin
-- [ ] Create/edit/delete products
-- [ ] Create/edit/delete users
-- [ ] View orders
-- [ ] Update order status
-- [ ] Receive low stock notification (when stock < 10)
-- [ ] Receive new order notification
-
-**Client:**
-
-- [ ] Register new account
-- [ ] Login
-- [ ] Browse products
-- [ ] Search and filter products
-- [ ] Add products to cart
-- [ ] Update cart quantities
-- [ ] Checkout with shipping info
-- [ ] Receive order confirmation email
-- [ ] Receive order status update email
 
 ### Queue Testing
 
