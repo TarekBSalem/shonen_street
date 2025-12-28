@@ -14,10 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total_price', 10, 2);
+            $table->string('status')->default('pending');
+            $table->text('shipping_address')->nullable();
             $table->timestamps();
 
             // Index for performance on user queries
             $table->index('user_id');
+            $table->index('status');
             $table->index('created_at');
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Cart;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -45,7 +46,24 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'sidebarOpen' => !$request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'cartCount' => $this->getCartCount($request),
         ];
+    }
+
+    /**
+     * Get the cart item count for the authenticated user.
+     */
+    protected function getCartCount(Request $request): int
+    {
+        if (!$request->user()) {
+            return 0;
+        }
+
+        $cart = Cart::with('items')
+            ->where('user_id', $request->user()->id)
+            ->first();
+
+        return $cart ? $cart->items->sum('quantity') : 0;
     }
 }

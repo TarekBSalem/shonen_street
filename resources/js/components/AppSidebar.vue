@@ -14,9 +14,10 @@ import {
 import { dashboard } from '@/routes';
 import users from '@/routes/admin/users';
 import products from '@/routes/admin/products';
+import orders from '@/routes/admin/orders';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { LayoutGrid, Package, Users } from 'lucide-vue-next';
+import { LayoutGrid, Package, Users, ShoppingBag } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -24,6 +25,11 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Orders',
+        href: orders.index(),
+        icon: ShoppingBag,
     },
     {
         title: 'Products',

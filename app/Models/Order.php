@@ -13,10 +13,7 @@ class Order extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'total_price',
-    ];
+    protected $fillable = ['user_id', 'total_price', 'status', 'shipping_address'];
 
     /**
      * Get the attributes that should be cast.

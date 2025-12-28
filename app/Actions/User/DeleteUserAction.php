@@ -22,4 +22,3 @@ class DeleteUserAction
         return $user->delete();
     }
 }
-

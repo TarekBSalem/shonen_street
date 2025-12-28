@@ -89,14 +89,12 @@ const handlePageChange = (url: string | null) => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
+
         <Head title="Users Management" />
 
         <div class="px-4 py-6">
             <div class="mb-6 flex items-center justify-between">
-                <Heading
-                    title="Users Management"
-                    description="Manage regular users (non-admin)"
-                />
+                <Heading title="Users Management" description="Manage regular users (non-admin)" />
                 <Button @click="handleCreate">
                     <Plus class="mr-2 h-4 w-4" />
                     Add User
@@ -116,20 +114,13 @@ const handlePageChange = (url: string | null) => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow
-                            v-if="users.data.length === 0"
-                            class="hover:bg-transparent"
-                        >
+                        <TableRow v-if="users.data.length === 0" class="hover:bg-transparent">
                             <TableCell colspan="5" class="h-24 text-center">
                                 <div class="flex flex-col items-center gap-2">
                                     <p class="text-muted-foreground">
                                         No users found.
                                     </p>
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        @click="handleCreate"
-                                    >
+                                    <Button variant="outline" size="sm" @click="handleCreate">
                                         <Plus class="mr-2 h-4 w-4" />
                                         Create your first user
                                     </Button>
@@ -137,33 +128,20 @@ const handlePageChange = (url: string | null) => {
                             </TableCell>
                         </TableRow>
 
-                        <TableRow
-                            v-for="user in users.data"
-                            :key="user.id"
-                            class="group"
-                        >
+                        <TableRow v-for="user in users.data" :key="user.id" class="group">
                             <TableCell class="font-medium">
                                 {{ user.name }}
                             </TableCell>
                             <TableCell>
                                 <div class="flex items-center gap-2">
-                                    <Mail
-                                        v-if="!user.email_verified_at"
-                                        class="h-4 w-4 text-muted-foreground"
-                                    />
-                                    <MailCheck
-                                        v-else
-                                        class="h-4 w-4 text-green-600"
-                                    />
+                                    <Mail v-if="!user.email_verified_at" class="h-4 w-4 text-muted-foreground" />
+                                    <MailCheck v-else class="h-4 w-4 text-green-600" />
                                     {{ user.email }}
                                 </div>
                             </TableCell>
                             <TableCell>
-                                <Badge
-                                    v-if="user.email_verified_at"
-                                    variant="default"
-                                    class="bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100"
-                                >
+                                <Badge v-if="user.email_verified_at" variant="default"
+                                    class="bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100">
                                     Verified
                                 </Badge>
                                 <Badge v-else variant="secondary">
@@ -175,21 +153,11 @@ const handlePageChange = (url: string | null) => {
                             </TableCell>
                             <TableCell class="text-right">
                                 <div class="flex justify-end gap-2">
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        @click="handleEdit(user)"
-                                        title="Edit user"
-                                    >
+                                    <Button variant="ghost" size="icon" @click="handleEdit(user)" title="Edit user">
                                         <Pencil class="h-4 w-4" />
                                     </Button>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        @click="handleDelete(user)"
-                                        title="Delete user"
-                                        class="text-destructive hover:text-destructive"
-                                    >
+                                    <Button variant="ghost" size="icon" @click="handleDelete(user)" title="Delete user"
+                                        class="text-destructive hover:text-destructive">
                                         <Trash2 class="h-4 w-4" />
                                     </Button>
                                 </div>
@@ -199,10 +167,7 @@ const handlePageChange = (url: string | null) => {
                 </Table>
 
                 <!-- Pagination -->
-                <div
-                    v-if="users.last_page > 1"
-                    class="flex items-center justify-between border-t px-4 py-3"
-                >
+                <div v-if="users.last_page > 1" class="flex items-center justify-between border-t px-4 py-3">
                     <div class="text-sm text-muted-foreground">
                         Showing
                         <span class="font-medium">
@@ -222,35 +187,17 @@ const handlePageChange = (url: string | null) => {
                         users
                     </div>
                     <div class="flex gap-2">
-                        <Button
-                            v-for="link in users.links"
-                            :key="link.label"
-                            :variant="link.active ? 'default' : 'outline'"
-                            size="sm"
-                            @click="handlePageChange(link.url)"
-                            :disabled="!link.url"
-                            v-html="link.label"
-                        />
+                        <Button v-for="link in users.links" :key="link.label"
+                            :variant="link.active ? 'default' : 'outline'" size="sm" @click="handlePageChange(link.url)"
+                            :disabled="!link.url" v-html="link.label" />
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modals -->
-        <UserFormModal
-            v-model:open="showCreateModal"
-            @success="handleSuccess"
-        />
-        <UserFormModal
-            v-model:open="showEditModal"
-            :user="selectedUser"
-            @success="handleSuccess"
-        />
-        <UserDeleteModal
-            v-model:open="showDeleteModal"
-            :user="selectedUser"
-            @success="handleSuccess"
-        />
+        <UserFormModal v-model:open="showCreateModal" @success="handleSuccess" />
+        <UserFormModal v-model:open="showEditModal" :user="selectedUser" @success="handleSuccess" />
+        <UserDeleteModal v-model:open="showDeleteModal" :user="selectedUser" @success="handleSuccess" />
     </AppLayout>
 </template>
-

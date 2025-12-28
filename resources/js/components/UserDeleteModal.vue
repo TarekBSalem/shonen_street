@@ -47,9 +47,7 @@ const handleSuccess = () => {
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
                 <div class="flex items-center gap-3">
-                    <div
-                        class="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10"
-                    >
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10">
                         <AlertTriangle class="h-5 w-5 text-destructive" />
                     </div>
                     <DialogTitle>Delete User</DialogTitle>
@@ -58,7 +56,7 @@ const handleSuccess = () => {
                     Are you sure you want to delete
                     <span class="font-semibold text-foreground">{{
                         user?.name
-                    }}</span>
+                        }}</span>
                     ({{ user?.email }})?
                     <br />
                     <span class="text-destructive">
@@ -67,27 +65,13 @@ const handleSuccess = () => {
                 </DialogDescription>
             </DialogHeader>
 
-            <Form
-                v-if="user"
-                :action="`/admin/users/${user.id}`"
-                method="delete"
-                @success="handleSuccess"
-                v-slot="{ processing }"
-            >
+            <Form v-if="user" :action="`/admin/users/${user.id}`" method="delete" @success="handleSuccess"
+                v-slot="{ processing }">
                 <DialogFooter>
-                    <Button
-                        type="button"
-                        variant="outline"
-                        @click="handleClose"
-                        :disabled="processing"
-                    >
+                    <Button type="button" variant="outline" @click="handleClose" :disabled="processing">
                         Cancel
                     </Button>
-                    <Button
-                        type="submit"
-                        variant="destructive"
-                        :disabled="processing"
-                    >
+                    <Button type="submit" variant="destructive" :disabled="processing">
                         <Spinner v-if="processing" class="mr-2" />
                         Delete User
                     </Button>
@@ -96,4 +80,3 @@ const handleSuccess = () => {
         </DialogContent>
     </Dialog>
 </template>
-
